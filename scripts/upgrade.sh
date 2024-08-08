@@ -38,7 +38,7 @@ replace_binary() {
   fi
   RKE2_CONTEXT=$(getfilecon $FULL_BIN_PATH 2>/dev/null | awk '{print $2}' || true)
   info "Deploying new rke2 binary to $RKE2_BIN_PATH"
-  cp $NEW_BINARY $FULL_BIN_PATH
+  cp -f $NEW_BINARY $FULL_BIN_PATH
   if [ -n "${RKE2_CONTEXT}" ]; then
     info 'Restoring rke2 bin context'
     setfilecon "${RKE2_CONTEXT}" $FULL_BIN_PATH
